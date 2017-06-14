@@ -269,6 +269,8 @@ def logout_user(request):
     current_user = check_token(request)
 
     if current_user is not None:
+        token= AccessToken.objects.filter(users_id="current_user",is_valid="true" )
+        token.is_valid=False
         return Response({"message":"You are successfully logged out"})
 
     else :
